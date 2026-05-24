@@ -1,0 +1,38 @@
+---
+title: Runs
+layout: base
+permalink: /
+showHeartRate: false
+showMap: true
+animate: true
+---
+
+
+{%- for run in runs | entries | reverse -%}
+{#
+  <!--For debugging purposes-->
+  {{ run | last | dump }}
+#}
+  {%- set entry = run | last -%}
+  <div class="run-data-wrapper{% if animate %} animate{% endif %}">
+    <dl>
+      <dt>Date</dt>
+      <dd>{{ entry.features[0].properties.time | readableDateISO }}</dd>
+      {% if showHeartRate %}
+      <dt>Heart Rate</dt>
+      <dd>
+        <div class="run-data-graphs heart-rate">
+          {{ run | getSparklineFromRunRecord('heartRates', 'currentColor') | safe }}
+        </div>
+      </dd>
+      {% endif %}
+    </dl>
+    {% if showMap %}
+      {{ entry | CreateSVGfromGeoJSON | safe }}
+    {% endif %}
+  </div>
+{%- endfor -%}
+
+{% if animate %}
+  {% include "io-run-path.njk" %}
+{% endif %}

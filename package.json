@@ -1,0 +1,28 @@
+{
+  "name": "gpx-viewer",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "npm run calculate && npm run dev:clean && npm run dev:start",
+    "calculate": "node calculate.js",
+    "dev:clean": "rm -rf dist",
+    "dev:start": "eleventy --serve",
+    "build": "NODE_ENV=production npm run calculate && npm run prod:clean && npm run prod:build",
+    "prod:clean": "rm -rf dist",
+    "prod:build": "NODE_ENV=production eleventy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.5",
+    "@mapbox/togeojson": "^0.16.2",
+    "@xmldom/xmldom": "^0.9.10",
+    "clean-css": "^5.3.3",
+    "d3": "^7.9.0",
+    "luxon": "^3.7.2",
+    "sparkline-svg": "^1.0.4",
+    "svgo": "^4.0.1"
+  }
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark light">
+  <meta name="generator" content="{{ eleventy.generator }}">
+  <title>{{ title or page.title or metadata.title }} | {{ metadata.title }}</title>
+  {% set css %}
+    {% include "css/normalize.css" %}
+    {% include "css/style.css" %}
+  {% endset %}
+  <style>{{ css | cssmin | safe }}</style>
+</head>
+<body>
+  <a class="skip-to-content-link visually-hidden" href="#main">Skip to content</a>
+
+  <main id="main">
+    {% block content %}
+      {{ content | safe }}
+    {% endblock %}
+  </main>
+
+  <footer>
+    Last Updated: {% date %}
+    {% if NODE_ENVIRONMENT != 'production' %}
+      <p>Development Mode. Built by <a href="https://danleatherman.com/">Dan Leatherman</a> using <a href="https://11ty.dev/">Eleventy</a> <a href="#">GPX Archive Template</a></p>
+    {% endif %}
+  </footer>
+
+</body>
+</html>
