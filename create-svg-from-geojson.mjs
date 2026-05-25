@@ -4,8 +4,8 @@ import { optimize } from 'svgo';
 export const CreateSVGfromGeoJSON = (data, strokeSize = 5) => {
   if (!data) return;
   const dimensions = {
-    width: 350,
-    height: 300,
+    width: 400,
+    height: 400,
   };
 
   const { width, height } = dimensions;

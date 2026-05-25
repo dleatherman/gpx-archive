@@ -5,6 +5,8 @@
       const path = entry.target.querySelector('path');
       if (path && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
         path.classList.add('animate');
+        // Safari hack setting css variable for length of the path
+        path.parentElement.style = `--l: ${path.getTotalLength().toFixed(2)};`
       }
     }
   });

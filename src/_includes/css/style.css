@@ -72,14 +72,26 @@ dl {
   justify-content: space-between;
   max-width: 40ch;
 }
+
+svg {
+  height: auto;
+  max-width: 100%;
+}
+
+.run-data-wrapper {
+  padding: 2rem;
+}
+
 .run-data-wrapper.animate svg > path {
   opacity: 0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .run-data-wrapper.animate svg > path.animate {
   opacity: 1;
-  stroke-dashoffset: 1200;
-  stroke-dasharray: 1200;
+  stroke-dashoffset: var(--l, 1000);
+  stroke-dasharray: var(--l, 1000);
 
   animation: draw calc(var(--speed, 5) * 1.5s) ease-out forwards;
 }
