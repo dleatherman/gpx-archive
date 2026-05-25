@@ -14,23 +14,26 @@ animate: true
   {{ workout | last | dump }}
 #}
   {%- set entry = workout | last -%}
-  <div class="workout-data-wrapper{% if animate %} animate{% endif %}">
-    <dl>
-      <dt>Date</dt>
-      <dd>{{ entry.features[0].properties.time | readableDateISO }}</dd>
-      {% if showHeartRate %}
-      <dt>Heart Rate</dt>
-      <dd>
-        <div class="workout-data-graphs heart-rate">
-          {{ workout | getSparklineFromWorkoutRecord('heartRates', 'currentColor') | safe }}
-        </div>
-      </dd>
+  {% if entry.features[0].geometry.coordinates.length > 1 %}
+    <div class="workout-data-wrapper{% if animate %} animate{% endif %}">
+      <dl>
+        <dt>Date</dt>
+        <dd>{{ entry.features[0].properties.time | readableDateISO }}</dd>
+        {% if showHeartRate %}
+        <dt>Heart Rate</dt>
+        <dd>
+          <div class="workout-data-graphs heart-rate">
+            {{ workout | getSparklineFromWorkoutRecord('heartRates', 'currentColor') | safe }}
+          </div>
+        </dd>
+        {% endif %}
+      </dl>
+      {# {{ entry.features[0] | dump }} #}
+      {% if showMap %}
+        {{ entry | CreateSVGfromGeoJSON | safe }}
       {% endif %}
-    </dl>
-    {% if showMap %}
-      {{ entry | CreateSVGfromGeoJSON | safe }}
-    {% endif %}
-  </div>
+    </div>
+  {% endif %}
 {%- endfor -%}
 
 {% if animate %}
