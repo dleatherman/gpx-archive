@@ -1,0 +1,14 @@
+---
+title: Heatmap
+layout: base
+permalink: /heatmap/
+---
+
+<div class="workout-heatmap">
+  {%- for workout in workouts | entries | reverse -%}
+    {%- set entry = workout | last -%}
+    {% if entry.features[0].geometry.coordinates.length > 1 %}
+      {{ entry | CreateSVGfromGeoJSON(1000) | safe }}
+    {% endif %}
+  {%- endfor -%}
+</div>

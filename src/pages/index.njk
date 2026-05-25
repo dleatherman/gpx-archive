@@ -19,7 +19,6 @@ animate: true
         <dt>Date</dt>
         <dd>{{ entry.features[0].properties.time | readableDateISO }}</dd>
       </dl>
-      {# {{ entry.features[0] | dump }} #}
       {% if showMap %}
         {{ entry | CreateSVGfromGeoJSON | safe }}
       {% endif %}

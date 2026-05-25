@@ -1,3 +1,6 @@
+:root {
+  --color-foreground: 255, 255, 255;
+}
 *,
 *::before,
 *::after {
@@ -110,4 +113,13 @@ footer {
   .workout-data-wrapper.animate svg > path {
     opacity: 1;
   }
+}
+
+.workout-heatmap {
+  color: rgba(var(--color-foreground), 0.15);
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.workout-heatmap svg {
+  grid-area: -1 / 1;
 }

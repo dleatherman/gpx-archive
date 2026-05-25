@@ -27,8 +27,12 @@ export default async function (eleventyConfig) {
   });
 
   // Generates SVG from GeoJSON
-  eleventyConfig.addFilter("CreateSVGfromGeoJSON", (data) => {
-    return CreateSVGfromGeoJSON(data);
+  eleventyConfig.addFilter("CreateSVGfromGeoJSON", (data, size) => {
+    let dimensions;
+    if (size) {
+      dimensions = { width: size, height: size };
+    }
+    return CreateSVGfromGeoJSON({data, dimensions});
   });
 
   // Generates a sparkline from workout data
