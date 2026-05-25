@@ -25,7 +25,7 @@ Promise.all(files.map((file) => readFile(file))).then((fileBuffers) => {
       simplifiedTopo,
       simplifiedTopo.objects.data
     );
-    simplifiedGeoJSON.features[0].geometry.coordinates = deduplicateCoordinates(simplifiedGeoJSON.features[0]?.geometry?.coordinates)
+    // simplifiedGeoJSON.features[0].geometry.coordinates = deduplicateCoordinates(simplifiedGeoJSON.features[0]?.geometry?.coordinates)
     fs.writeFileSync(`src/_data/workouts/${fileName}.json`, JSON.stringify(simplifiedGeoJSON, null, 2));
   });
 });

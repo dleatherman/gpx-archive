@@ -2,6 +2,7 @@
 title: Workouts
 layout: base
 permalink: /
+showHeartRate: false
 showMap: true
 animate: true
 ---
@@ -18,6 +19,14 @@ animate: true
       <dl>
         <dt>Date</dt>
         <dd>{{ entry.features[0].properties.time | readableDateISO }}</dd>
+        {% if showHeartRate and entry.features[0].properties.heartRates %}
+          <dt>Heart Rate</dt>
+          <dd>
+            {{ entry | getSparklineFromWorkoutecord('heartRates', 'currentColor') | safe }}
+          </dd>
+          <dt>Avg. Heart Rate</dt>
+          <dd>{{ entry.features[0].properties.heartRates | average | toFixed(0) }}</dd>
+        {% endif %}
       </dl>
       {% if showMap %}
         {{ entry | CreateSVGfromGeoJSON | safe }}

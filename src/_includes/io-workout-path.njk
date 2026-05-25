@@ -2,7 +2,7 @@
   const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      const path = entry.target.querySelector('path');
+      const path = entry.target.querySelector('.workout-path');
       if (path && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
         path.classList.add('animate');
         // Safari hack setting css variable for length of the path

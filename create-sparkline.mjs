@@ -2,10 +2,10 @@ import Sparkline from 'sparkline-svg';
 
 export const CreateSparkline = (
   data,
-  color = "#000000",
+  color = "currentColor",
   fill = false,
   width = 250,
-  height = 80,
+  height = 20,
 ) => {
   let line = new Sparkline.default(data || []);
   line.setViewBoxHeight(height);

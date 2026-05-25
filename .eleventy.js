@@ -26,6 +26,16 @@ export default async function (eleventyConfig) {
     return DateTime.fromISO(dateObj, { zone: "utc" }).toFormat("LLL d, yyyy");
   });
 
+  // Get average of array of numbers
+  eleventyConfig.addFilter("average", (array) => {
+    return array.reduce((a, b) => a + b, 0) / array.length;
+  })
+
+  // Get fixed number of decimals
+  eleventyConfig.addFilter("toFixed", (number, length) => {
+    return number.toFixed(length);
+  })
+
   // Generates SVG from GeoJSON
   eleventyConfig.addFilter("CreateSVGfromGeoJSON", (data, size) => {
     let dimensions;
@@ -41,7 +51,7 @@ export default async function (eleventyConfig) {
     (workout, getKey, color) => {
       if (!getKey) return;
       const result = [];
-      const workoutData = workout[1].features[0].properties[getKey];
+      const workoutData = workout.features[0].properties[getKey];
       workoutData.forEach(entry => {
         if (!isNaN(entry)) {
           result.push(entry);
