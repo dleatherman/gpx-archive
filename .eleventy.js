@@ -36,6 +36,16 @@ export default async function (eleventyConfig) {
     return number.toFixed(length);
   })
 
+  // convert to spm
+  eleventyConfig.addFilter("spm", (kmh) => {
+    return (parseFloat(kmh) * 2);
+  });
+
+  // convert to mph
+  eleventyConfig.addFilter("mph", (mps) => {
+    return (parseFloat(mps) * 2.23694).toFixed(2);
+  });
+
   // Generates SVG from GeoJSON
   eleventyConfig.addFilter("CreateSVGfromGeoJSON", (data, size) => {
     let dimensions;
@@ -53,7 +63,7 @@ export default async function (eleventyConfig) {
       const result = [];
       const workoutData = workout.features[0].properties[getKey];
       workoutData.forEach(entry => {
-        if (!isNaN(entry)) {
+        if (!isNaN(entry) || !isNumber(entry)) {
           result.push(entry);
         }
       })

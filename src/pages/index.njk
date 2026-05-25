@@ -2,7 +2,9 @@
 title: Workouts
 layout: base
 permalink: /
-showHeartRate: false
+showHeartRate: true
+showCadence: true
+showSpeed: true
 showMap: true
 animate: true
 ---
@@ -15,17 +17,32 @@ animate: true
 #}
   {%- set entry = workout | last -%}
   {% if entry.features[0].geometry.coordinates.length > 1 %}
-    <div class="workout-data-wrapper{% if animate %} animate{% endif %}">
+    <div class="workout-data-wrapper{% if animate %} animate{% endif %}" style="--speed: {{ entry.features[0].properties.speeds | average | mph }};">
       <dl>
         <dt>Date</dt>
         <dd>{{ entry.features[0].properties.time | readableDateISO }}</dd>
+        <dt>Distance</dt>
+        <dd>{{ entry.features[0].properties.distanceMiles }} miles</dd>
         {% if showHeartRate and entry.features[0].properties.heartRates %}
           <dt>Heart Rate</dt>
           <dd>
             {{ entry | getSparklineFromWorkoutecord('heartRates', 'currentColor') | safe }}
+            <small>Avg. Heart Rate: {{ entry.features[0].properties.heartRates | average | toFixed(0) }} bpm</small>
           </dd>
-          <dt>Avg. Heart Rate</dt>
-          <dd>{{ entry.features[0].properties.heartRates | average | toFixed(0) }}</dd>
+        {% endif %}
+        {% if showCadence and entry.features[0].properties.cadences[0] != null %}
+          <dt>Cadence</dt>
+          <dd>
+            {{ entry | getSparklineFromWorkoutecord('cadences', 'currentColor') | safe }}
+            <small>Avg. Cadence: {{ entry.features[0].properties.cadences | average | toFixed(0) | spm }} spm</small>
+          </dd>
+        {% endif %}
+        {% if showSpeed and entry.features[0].properties.speeds %}
+          <dt>Speed</dt>
+          <dd>
+            {{ entry | getSparklineFromWorkoutecord('speeds', 'currentColor') | safe }}
+            <small>Average Speed: {{ entry.features[0].properties.speeds | average | mph }} mph</small>
+          </dd>
         {% endif %}
       </dl>
       {% if showMap %}

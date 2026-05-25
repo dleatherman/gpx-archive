@@ -5,9 +5,9 @@ export const CreateSparkline = (
   color = "currentColor",
   fill = false,
   width = 250,
-  height = 20,
+  height = 30,
 ) => {
-  let line = new Sparkline.default(data || []);
+  let line = new Sparkline.default(data.filter(num => typeof num === 'number' && !isNaN(num)) || []);
   line.setViewBoxHeight(height);
   line.setViewBoxWidth(width);
   line.setWidth(width);
