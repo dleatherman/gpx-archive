@@ -5,10 +5,11 @@ import { DOMParser } from '@xmldom/xmldom';
 import { DateTime } from 'luxon';
 import { topology } from "topojson-server";
 import { feature } from "topojson-client";
-import { presimplify, simplify, quantile } from 'topojson-simplify';
+import { presimplify, simplify } from 'topojson-simplify';
 
 // Chuck all your .gpx files into the _workouts folder
-const files = fs.readdirSync('_workouts').map((file) => `_workouts/${file}`);
+const files = fs.readdirSync('_workouts')
+  .filter((file) => file.endsWith('.gpx')).map((file) => `_workouts/${file}`);
 
 Promise.all(files.map((file) => readFile(file))).then((fileBuffers) => {
   fileBuffers.forEach((fileBuffer) => {
