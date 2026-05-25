@@ -2,7 +2,6 @@
 title: Workouts
 layout: base
 permalink: /
-showHeartRate: false
 showMap: true
 animate: true
 ---
@@ -19,14 +18,6 @@ animate: true
       <dl>
         <dt>Date</dt>
         <dd>{{ entry.features[0].properties.time | readableDateISO }}</dd>
-        {% if showHeartRate %}
-        <dt>Heart Rate</dt>
-        <dd>
-          <div class="workout-data-graphs heart-rate">
-            {{ workout | getSparklineFromWorkoutRecord('heartRates', 'currentColor') | safe }}
-          </div>
-        </dd>
-        {% endif %}
       </dl>
       {# {{ entry.features[0] | dump }} #}
       {% if showMap %}
