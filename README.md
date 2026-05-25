@@ -1,6 +1,9 @@
 # GPX Viewer
 
 1. Chuck all your `.gpx` files into the `_workouts` folder
+2. Run `npm install`
+3. Run `npm run start` for development and `npm run build`
+4. Deploy your `dist` folder
 
 # Tech Stack
 
