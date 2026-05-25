@@ -78,17 +78,17 @@ svg {
   max-width: 100%;
 }
 
-.run-data-wrapper {
+.workout-data-wrapper {
   padding: 2rem;
 }
 
-.run-data-wrapper.animate svg > path {
+.workout-data-wrapper.animate svg > path {
   opacity: 0;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.run-data-wrapper.animate svg > path.animate {
+.workout-data-wrapper.animate svg > path.animate {
   opacity: 1;
   stroke-dashoffset: var(--l, 1000);
   stroke-dasharray: var(--l, 1000);
@@ -103,7 +103,7 @@ svg {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .run-data-wrapper.animate svg > path {
+  .workout-data-wrapper.animate svg > path {
     opacity: 1;
   }
 }

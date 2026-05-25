@@ -8,21 +8,21 @@ animate: true
 ---
 
 
-{%- for run in runs | entries | reverse -%}
+{%- for workout in workouts | entries | reverse -%}
 {#
   <!--For debugging purposes-->
-  {{ run | last | dump }}
+  {{ workout | last | dump }}
 #}
-  {%- set entry = run | last -%}
-  <div class="run-data-wrapper{% if animate %} animate{% endif %}">
+  {%- set entry = workout | last -%}
+  <div class="workout-data-wrapper{% if animate %} animate{% endif %}">
     <dl>
       <dt>Date</dt>
       <dd>{{ entry.features[0].properties.time | readableDateISO }}</dd>
       {% if showHeartRate %}
       <dt>Heart Rate</dt>
       <dd>
-        <div class="run-data-graphs heart-rate">
-          {{ run | getSparklineFromRunRecord('heartRates', 'currentColor') | safe }}
+        <div class="workout-data-graphs heart-rate">
+          {{ workout | getSparklineFromWorkoutRecord('heartRates', 'currentColor') | safe }}
         </div>
       </dd>
       {% endif %}
@@ -34,5 +34,5 @@ animate: true
 {%- endfor -%}
 
 {% if animate %}
-  {% include "io-run-path.njk" %}
+  {% include "io-workout-path.njk" %}
 {% endif %}

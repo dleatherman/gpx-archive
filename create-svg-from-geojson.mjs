@@ -24,8 +24,8 @@ export const CreateSVGfromGeoJSON = (data, strokeSize = 5) => {
   });
 
   const { data: optimizedSVG } =
-    optimize(`<svg class="run-path-wrapper" xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid meet">
-        <path class="run-path" d="${paths.join("")}" fill="none" stroke="currentColor" />
+    optimize(`<svg class="workout-path-wrapper" xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid meet">
+        <path class="workout-path" d="${paths.join("")}" fill="none" stroke="currentColor" />
       </svg>`);
 
   return optimizedSVG;

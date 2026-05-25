@@ -7,8 +7,8 @@ import { topology } from "topojson-server";
 import { feature } from "topojson-client";
 import { presimplify, simplify, quantile } from 'topojson-simplify';
 
-// Chuck all your .gpx files into the _runs folder
-const files = fs.readdirSync('_runs').map((file) => `_runs/${file}`);
+// Chuck all your .gpx files into the _workouts folder
+const files = fs.readdirSync('_workouts').map((file) => `_workouts/${file}`);
 
 Promise.all(files.map((file) => readFile(file))).then((fileBuffers) => {
   fileBuffers.forEach((fileBuffer) => {
@@ -25,7 +25,7 @@ Promise.all(files.map((file) => readFile(file))).then((fileBuffers) => {
     );
     simplifiedGeoJSON.features[0].geometry.coordinates = deduplicateCoordinates(simplifiedGeoJSON.features[0].geometry.coordinates)
     // console.log(simplifiedGeoJSON.features[0].geometry.coordinates)
-    fs.writeFileSync(`src/_data/runs/${fileName}.json`, JSON.stringify(simplifiedGeoJSON, null, 2));
+    fs.writeFileSync(`src/_data/workouts/${fileName}.json`, JSON.stringify(simplifiedGeoJSON, null, 2));
   });
 });
 

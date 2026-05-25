@@ -31,14 +31,14 @@ export default async function (eleventyConfig) {
     return CreateSVGfromGeoJSON(data);
   });
 
-  // Generates a sparkline from run data
+  // Generates a sparkline from workout data
   eleventyConfig.addFilter(
-    "getSparklineFromRunRecord",
-    (run, getKey, color) => {
+    "getSparklineFromWorkoutecord",
+    (workout, getKey, color) => {
       if (!getKey) return;
       const result = [];
-      const runData = run[1].features[0].properties[getKey];
-      runData.forEach(entry => {
+      const workoutData = workout[1].features[0].properties[getKey];
+      workoutData.forEach(entry => {
         if (!isNaN(entry)) {
           result.push(entry);
         }
