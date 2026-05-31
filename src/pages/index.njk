@@ -23,21 +23,21 @@ animate: true
         <dd>{{ entry.features[0].properties.time | readableDateISO }}</dd>
         <dt>Distance</dt>
         <dd>{{ entry.features[0].properties.distanceMiles }} miles</dd>
-        {% if showHeartRate and entry.features[0].properties.heartRates %}
+        {% if showHeartRate and entry.features[0].properties.heartRates[0] !== null %}
           <dt>Heart Rate</dt>
           <dd>
             {{ entry | getSparklineFromWorkoutecord('heartRates', 'currentColor') | safe }}
             <small>Avg. Heart Rate: {{ entry.features[0].properties.heartRates | average | toFixed(0) }} bpm</small>
           </dd>
         {% endif %}
-        {% if showCadence and entry.features[0].properties.cadences[0] != null %}
+        {% if showCadence and entry.features[0].properties.cadences[0] !== null %}
           <dt>Cadence</dt>
           <dd>
             {{ entry | getSparklineFromWorkoutecord('cadences', 'currentColor') | safe }}
             <small>Avg. Cadence: {{ entry.features[0].properties.cadences | average | toFixed(0) | spm }} spm</small>
           </dd>
         {% endif %}
-        {% if showSpeed and entry.features[0].properties.speeds %}
+        {% if showSpeed and entry.features[0].properties.speeds[0] !== null %}
           <dt>Speed</dt>
           <dd>
             {{ entry | getSparklineFromWorkoutecord('speeds', 'currentColor') | safe }}

@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "npm run calculate && npm run dev:clean && npm run dev:start",
+    "clean": "rm -rf ./src/_data/workouts/**",
     "calculate": "node calculate.js",
     "dev:clean": "rm -rf dist",
     "dev:start": "eleventy --serve",
